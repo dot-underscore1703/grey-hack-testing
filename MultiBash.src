@@ -1,0 +1,36 @@
+shell=get_shell
+computer=shell.host_computer
+bashFolder=computer.File("/bash/")
+if bashFolder == null then
+    if not computer.File("/").has_permission("w") then exit("No '/bash/' folder and cannot create one!")
+    computer.create_folder("/", "bash")
+end if
+bashList = []
+i = 0
+for bash in bashFolder.get_files
+    if bash == null then continue
+    if not bash.is_binary then continue
+    print("[" + i + "] " + bash.name)
+    bashList.push(bash)
+    i = i + 1
+end for
+if bashList.len == 0 then 
+    print("No bash files found! Defaulting to SimpleBash.")
+    while (1)
+        o = user_input("_sb> ")
+        if o.len == 0 then return 
+        l = o.trim.split(" ")
+        c = l[0]
+        s = ""
+        if l.len > 1 then
+            l.remove 0
+            s = l.join
+        end if
+        o = get_shell.launch(c, s)
+        if o then print o
+    end while
+    exit
+end if
+selection = user_input("SELECT A BASH: ",0,1).to_int
+if typeof(selection) != "number" then exit("Invalid input!")
+shell.launch(bashList[selection].path)

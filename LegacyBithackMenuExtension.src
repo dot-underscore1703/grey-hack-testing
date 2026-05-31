@@ -1,0 +1,11 @@
+get_custom_object.bithack_extension = function(query)
+    return function(buttons)
+        print(get_custom_object.color_text(get_custom_object.size_text("Welcome to bithack-eng v" + get_custom_object.app_data.version + ", " + active_user, 50)))
+        for i in range(0, buttons.len - 1)
+            print(get_custom_object.color_text("[" + i + "]", "white") + get_custom_object.color_text(" - " + buttons[i]))
+        end for
+        selection = user_input("bithack:~$ ", false, true)
+        if typeof(selection.to_int) == "string" or selection.to_int > buttons.len or selection.to_int < 0 then get_custom_object.error("Invalid input!")
+        return selection.to_int
+    end function
+end function    

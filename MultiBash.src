@@ -1,9 +1,9 @@
 if active_user != "root" then
-	print("<size=30><b><color=red>AUTHENTICATION FAILURE.</color></b></size>\n")
+	print("<size=30><b><color=red>AUTHENTICATION FAILURE GRRRRRRRRR.</color></b></size>\n")
 	pass = user_input("<color=red>ENTER PASSWORD: </color>", true)
 	shell = get_shell("root",pass)
 	if globals.shell == null then 
-		print("<color=red>INCORRECT DATA</color>")
+		print("<color=red>INCORRECT DATA GRRRRRRRRR</color>")
 		sysreboot = get_shell.host_computer.reboot()
 		if sysreboot == false then exit()
 	end if
@@ -14,7 +14,7 @@ end if
 computer=shell.host_computer
 bashFolder=computer.File("/root/multibash/")
 if bashFolder == null then
-    if not computer.File("/root").has_permission("w") then exit("No '/bash/' folder and cannot create one!")
+    if not computer.File("/root").has_permission("w") then exit("No '/bash/' folder and cannot create one Awwrrruuuf!!")
     computer.create_folder("/root", "multibash")
 end if 
 simplebash = function
@@ -46,10 +46,10 @@ for bash in bashFolder.get_files
 end for
 
 if bashList.len == 0 then 
-    print("No bash files found! Defaulting to SimpleBash.")
+    print("No bash files found Woof! Defaulting to SimpleBash X3.")
 end if
 selection = user_input("SELECT A BASH: ",0,1).to_int
-if typeof(selection) != "number" then exit("Invalid input!")
+if typeof(selection) != "number" then exit("Invalid input Wrruuff!")
 if selection == 0 then simplebash
 cd(home_dir)
 while(true)
